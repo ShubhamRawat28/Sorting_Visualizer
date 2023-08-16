@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- font awsome link -->
+    <link
+      rel="stylesheet"
+      href="https://kit.fontawesome.com/b38078abfc.css"
+      crossorigin="anonymous"
+    />
+    <!-- css -->
+    <link rel="stylesheet" href="../main.css"/>
+    <title>Selection sort</title>
+    <link rel="manifest" href="/manifest.json">
+  </head>
+  <body>
+    <div class="sidebar">
+      <div class="logo-details">
+        <i class="fa-solid fa-chart-column icon"></i>
+        <div class="logo_name">Sort It</div>
+        <i class="fa-solid fa-bars" id="btn"></i>
+      </div>
+      <ul class="nav-list">
+          <li>
+            <a href="../index.html">
+              <i class="fa-solid fa-house"></i>
+              <span class="links_name">Home</span>
+            </a>
+            <span class="tooltip">Home</span>
+          </li>
+          <li>
+            <a href="../bubble/bubble.html">
+              <i class="fa-solid fa-droplet"></i>
+              <span class="links_name">Bubble Sort</span>
+            </a>
+            <span class="tooltip">Bubble Sort</span>
+          </li>
+          <li>
+            <a href="../merge/merge.html">
+              <i class="fa-solid fa-m"></i>
+              <span class="links_name">Merge Sort</span>
+            </a>
+            <span class="tooltip">Merge Sort</span>
+          </li>
+          <li>
+            <a href="../quicksort/quicksort.html">
+              <i class="fa-solid fa-hourglass-end"></i>
+              <span class="links_name">Quick Sort</span>
+            </a>
+            <span class="tooltip">Quick Sort</span>
+          </li>
+        </ul>
+    </div>
+    <section id="home-section">
+      <div class="head_control">
+        <div class="heading">
+          <h1 class="name">Selection sort</h1>
+        </div>
+        <div class="controls">
+          <h1 class="con_heading">Controls</h1>
+          <div class="size_con">
+            <input
+              id="arr_size"
+              type="range"
+              min=20 max=150 step=1 value=80
+            />
+            <label for="arr_size" class="">Adjust Size</label>
+          </div>
+          <div class="time_con">
+            <input
+              id="time_delay"
+              type="range"
+              min=1 max=5 step=1 value=4
+            />
+            <label for="time_delay">Speed</label>
+          </div>
+          <button id="generate">New Array</button>
+          <button id="sort">Sort</button>
+        </div>
+      </div>
+      <div id="container"></div>
+      <div class="about">
+        <div class="content">
+          <h1 class="about_heading">About sort</h1>
+          Selection sort is a simple and efficient sorting algorithm that works by repeatedly selecting the smallest (or largest) element from the unsorted portion of the list and moving it to the sorted portion of the list. The algorithm repeatedly selects the smallest (or largest) element from the unsorted portion of the list and swaps it with the first element of the unsorted portion. This process is repeated for the remaining unsorted portion of the list until the entire list is sorted. One variation of selection sort is called “Bidirectional selection sort” that goes through the list of elements by alternating between the smallest and largest element, this way the algorithm can be faster in some cases.
+          <br>
+          The algorithm maintains two subarrays in a given array.
+          <li>The subarray which already sorted.</li> 
+          <li>The remaining subarray was unsorted.</li> 
+          <br>
+          In every iteration of the selection sort, the minimum element (considering ascending order) from the unsorted subarray is picked and moved to the beginning of unsorted subarray. 
+          
+          After every iteration sorted subarray size increase by one and unsorted subarray size decrease by one.
+          
+          After N (size of array) iteration we will get sorted array.
+        </div>
+        <div class="complex_info">
+          <h2>Selection_Sort Complexity</h2>
+          <table>
+            <tr>
+              <th>Time Complexity</th>
+              <th></th>
+            </tr>
+            <tr>
+              <th><h2>Best</h2></th>
+              <th>O(n^2)</th>
+            </tr>
+            <tr>
+              <th><h2>Worst</h2></th>
+              <th>O(n^2)</th>
+            </tr>
+            <tr>
+              <th><h2>Average</h2></th>
+              <th>O(n^2)</th>
+            </tr>
+            <tr>
+              <th>Space Complexity</th>
+              <th></th>
+            </tr>
+            <tr>
+              <th><h2>Best</h2></th>
+              <th>O(1)</th>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="code">
+        <h1>Code Snippet</h1>
+        <div class="code_part">
+          <pre>
+            selectionSort(array, size)
+            repeat (size - 1) times
+            set the first unsorted element as the minimum
+            for each of the unsorted elements
+                if element < currentMinimum
+                    set element as new minimum
+                swap minimum with first unsorted position
+            end selectionSort
+            /*C CODE*/
+            // Selection sort in C
+
+            #include <stdio.h>
+            
+            // function to swap the the position of two elements
+            void swap(int *a, int *b) {
+              int temp = *a;
+              *a = *b;
+              *b = temp;
+            }
+            
+            void selectionSort(int array[], int size) {
+              for (int step = 0; step < size - 1; step++) {
+                int min_idx = step;
+                for (int i = step + 1; i < size; i++) {
+            
+                  // To sort in descending order, change > to < in this line.
+                  // Select the minimum element in each loop.
+                  if (array[i] < array[min_idx])
+                    min_idx = i;
+                }
+            
+                // put min at the correct position
+                swap(&array[min_idx], &array[step]);
+              }
+            }
+            
+            // function to print an array
+            void printArray(int array[], int size) {
+              for (int i = 0; i < size; ++i) {
+                printf("%d  ", array[i]);
+              }
+              printf("\n");
+            }
+            
+            // driver code
+            int main() {
+              int data[] = {20, 12, 10, 15, 2};
+              int size = sizeof(data) / sizeof(data[0]);
+              selectionSort(data, size);
+              printf("Sorted array in Acsending Order:\n");
+              printArray(data, size);
+            }
+          </pre>
+        </div>
+      </div>
+    </section>
+    <div class="footer">
+      <h1>About Us</h1>
+      <br />
+      <ul>
+        <li>
+          <a href="#"><i class="fa-regular fa-address-book"></i></a>
+        </li>
+        <li>
+          <a href="#"><i class="fa-brands fa-github"></i></a>
+        </li>
+        <li>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        </li>
+        <li>
+          <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+        </li>
+      </ul>
+    </div>
+    <script
+      src="https://kit.fontawesome.com/b38078abfc.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../main.js"></script>
+    <script src="selection.js"></script>
+  </body>
+</html>

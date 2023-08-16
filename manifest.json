@@ -1,0 +1,13 @@
+{
+    "name": "Sort it",
+    "short_name": "Sort_it",
+    "start_url": "index.html",
+    "display": "standalone",
+    "background_color": "black",
+    "theme_color": "white",
+    "orientation": "portrait-primary",
+    "icons":
+    [
+        
+    ]
+}

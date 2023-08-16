@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- font awsome link -->
+    <link
+      rel="stylesheet"
+      href="https://kit.fontawesome.com/b38078abfc.css"
+      crossorigin="anonymous"
+    />
+    <!-- css -->
+    <link rel="stylesheet" href="../main.css"/>
+    <title>Merge sort</title>
+    <link rel="manifest" href="/manifest.json">
+  </head>
+  <body>
+    <div class="sidebar">
+      <div class="logo-details">
+        <i class="fa-solid fa-chart-column icon"></i>
+        <div class="logo_name">Sort It</div>
+        <i class="fa-solid fa-bars" id="btn"></i>
+      </div>
+      <ul class="nav-list">
+        <li>
+          <a href="../index.html">
+            <i class="fa-solid fa-house"></i>
+            <span class="links_name">Home</span>
+          </a>
+          <span class="tooltip">Home</span>
+        </li>
+        <li>
+          <a href="../bubble/bubble.html">
+            <i class="fa-solid fa-m"></i>
+            <span class="links_name">Merge Sort</span>
+          </a>
+          <span class="tooltip">Bubble Sort</span>
+        </li>
+        <li>
+          <a href="../selection_sort/selection.html">
+            <i class="fa-solid fa-check-to-slot"></i>
+            <span class="links_name">Selection Sort</span>
+          </a>
+          <span class="tooltip">Selection Sort</span>
+        </li>
+        <li>
+          <a href="../quicksort/quicksort.html">
+            <i class="fa-solid fa-hourglass-end"></i>
+            <span class="links_name">Quick Sort</span>
+          </a>
+          <span class="tooltip">Quick Sort</span>
+        </li>
+      </ul>
+    </div>
+    <section id="home-section">
+      <div class="head_control">
+        <div class="heading">
+          <h1 class="name">Merge sort</h1>
+        </div>
+        <div class="controls">
+          <h1 class="con_heading">Controls</h1>
+          <div class="size_con">
+            <input
+              id="arr_size"
+              type="range"
+              min=20 max=150 step=1 value=80
+            />
+            <label for="arr_size" class="">Adjust Size</label>
+          </div>
+          <div class="time_con">
+            <input
+              id="time_delay"
+              type="range"
+              min=1 max=5 step=1 value=4
+            />
+            <label for="time_delay">Speed</label>
+          </div>
+          <button id="generate">New Array</button>
+          <button id="sort">Sort</button>
+        </div>
+      </div>
+      <div id="container"></div>
+      <div class="about">
+        <div class="content">
+          <h1 class="about_heading">About sort</h1>
+          Merge sort is a sorting algorithm that works by dividing an array into smaller subarrays, sorting each subarray, and then merging the sorted subarrays back together to form the final sorted array.
+            <br>
+          In simple terms, we can say that the process of merge sort is to divide the array into two halves, sort each half, and then merge the sorted halves back together. This process is repeated until the entire array is sorted.
+            <br>
+          One thing that you might wonder is what is the specialty of this algorithm. We already have a number of sorting algorithms then why do we need this algorithm? One of the main advantages of merge sort is that it has a time complexity of O(n log n), which means it can sort large arrays relatively quickly. It is also a stable sort, which means that the order of elements with equal values is preserved during the sort.
+            <br>
+          Merge sort is a popular choice for sorting large datasets because it is relatively efficient and easy to implement. It is often used in conjunction with other algorithms, such as quicksort, to improve the overall performance of a sorting routine.
+        </div>
+        <div class="complex_info">
+          <h2>Merge Sort Complexity</h2>
+          <table>
+            <tr>
+              <th>Time Complexity</th>
+              <th></th>
+            </tr>
+            <tr>
+              <th><h2>Best</h2></th>
+              <th>O(n*log(n))</th>
+            </tr>
+            <tr>
+              <th><h2>Worst</h2></th>
+              <th>O(n*log(n))</th>
+            </tr>
+            <tr>
+              <th><h2>Average</h2></th>
+              <th>O(n*log(n))</th>
+            </tr>
+            <tr>
+              <th>Space Complexity</th>
+              <th></th>
+            </tr>
+            <tr>
+              <th><h2>Best</h2></th>
+              <th>O(n)</th>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="code">
+        <h1>Code Snippet</h1>
+        <div class="code_part">
+          <pre>
+            // Merge two subarrays L and M into arr
+            void merge(int arr[], int p, int q, int r) {
+            
+                // Create L ← A[p..q] and M ← A[q+1..r]
+                int n1 = q - p + 1;
+                int n2 = r - q;
+            
+                int L[n1], M[n2];
+            
+                for (int i = 0; i < n1; i++)
+                    L[i] = arr[p + i];
+                for (int j = 0; j < n2; j++)
+                    M[j] = arr[q + 1 + j];
+            
+                // Maintain current index of sub-arrays and main array
+                int i, j, k;
+                i = 0;
+                j = 0;
+                k = p;
+            
+                // Until we reach either end of either L or M, pick larger among
+                // elements L and M and place them in the correct position at A[p..r]
+                while (i < n1 && j < n2) {
+                    if (L[i] <= M[j]) {
+                        arr[k] = L[i];
+                        i++;
+                    } else {
+                        arr[k] = M[j];
+                        j++;
+                    }
+                    k++;
+                }
+            
+                // When we run out of elements in either L or M,
+                // pick up the remaining elements and put in A[p..r]
+                while (i < n1) {
+                    arr[k] = L[i];
+                    i++;
+                    k++;
+                }
+            
+                while (j < n2) {
+                    arr[k] = M[j];
+                    j++;
+                    k++;
+                }
+            }
+          </pre>
+        </div>
+      </div>
+    </section>
+    <div class="footer">
+      <h1>About Us</h1>
+      <br />
+      <ul>
+        <li>
+          <a href="#"><i class="fa-regular fa-address-book"></i></a>
+        </li>
+        <li>
+          <a href="#"><i class="fa-brands fa-github"></i></a>
+        </li>
+        <li>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        </li>
+        <li>
+          <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+        </li>
+      </ul>
+    </div>
+    <script
+      src="https://kit.fontawesome.com/b38078abfc.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../main.js"></script>
+    <script src="merge.js"></script>
+  </body>
+</html>

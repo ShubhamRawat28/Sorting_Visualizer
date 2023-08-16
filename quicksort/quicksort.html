@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- font awsome link -->
+    <link
+      rel="stylesheet"
+      href="https://kit.fontawesome.com/b38078abfc.css"
+      crossorigin="anonymous"
+    />
+    <!-- css -->
+    <link rel="stylesheet" href="../main.css" />
+    <title>quick sort</title>
+    <link rel="manifest" href="/manifest.json">
+  </head>
+  <body>
+    <div class="sidebar">
+      <div class="logo-details">
+        <i class="fa-solid fa-chart-column icon"></i>
+        <div class="logo_name">Sort It</div>
+        <i class="fa-solid fa-bars" id="btn"></i>
+      </div>
+      <ul class="nav-list">
+          <li>
+            <a href="../index.html">
+              <i class="fa-solid fa-house"></i>
+              <span class="links_name">Home</span>
+            </a>
+            <span class="tooltip">Home</span>
+          </li>
+          <li>
+            <a href="../bubble/bubble.html">
+              <i class="fa-solid fa-droplet"></i>
+              <span class="links_name">Bubble Sort</span>
+            </a>
+            <span class="tooltip">Bubble Sort</span>
+          </li>
+          <li>
+            <a href="../selection_sort/selection.html">
+              <i class="fa-solid fa-check-to-slot"></i>
+              <span class="links_name">Selection Sort</span>
+            </a>
+            <span class="tooltip">Selection Sort</span>
+          </li>
+          <li>
+            <a href="../merge/merge.html">
+              <i class="fa-solid fa-m"></i>
+              <span class="links_name">Merge Sort</span>
+            </a>
+            <span class="tooltip">Merge Sort</span>
+          </li>
+        </ul>
+    </div>
+    <section id="home-section">
+      <div class="head_control">
+        <div class="heading">
+          <h1 class="name">Quick sort</h1>
+        </div>
+        <div class="controls">
+          <h1 class="con_heading">Controls</h1>
+          <div class="size_con">
+            <input
+              id="arr_size"
+              type="range"
+              min=20 max=150 step=1 value=80
+            />
+            <label for="arr_size" class="">Adjust Size</label>
+          </div>
+          <div class="time_con">
+            <input
+              id="time_delay"
+              type="range"
+              min=1 max=5 step=1 value=4
+            />
+            <label for="time_delay">Speed</label>
+          </div>
+          <button id="generate">New Array</button>
+          <button id="sort">Sort</button>
+        </div>
+      </div>
+      <div id="container"></div>
+      <div class="about">
+        <div class="content">
+          <h1 class="about_heading">About sort</h1>
+          QuickSort is a Divide and Conquer algorithm. It picks an element as a
+          pivot and partitions the given array around the picked pivot. There
+          are many different versions of quickSort that pick pivot in different
+          ways.
+
+          <li>Always pick the first element as a pivot.</li>
+          <li>Always pick the last element as a pivot (implemented below)</li>
+          <li>Pick a random element as a pivot.</li>
+          <li>Pick median as the pivot.</li>
+          The key process in quickSort is a partition(). The target of
+          partitions is, given an array and an element x of an array as the
+          pivot, put x at its correct position in a sorted array and put all
+          smaller elements (smaller than x) before x, and put all greater
+          elements (greater than x) after x. All this should be done in linear
+          time.
+        </div>
+        <div class="complex_info">
+          <h2>Quicksort Complexity</h2>
+          <table>
+            <tr>
+              <th>Time Complexity</th>
+              <th></th>
+            </tr>
+            <tr>
+              <th><h2>Best</h2></th>
+              <th>O(n*logn)</th>
+            </tr>
+            <tr>
+              <th><h2>Worst</h2></th>
+              <th>O(n^2)</th>
+            </tr>
+            <tr>
+              <th><h2>Average</h2></th>
+              <th>O(n*logn)</th>
+            </tr>
+            <tr>
+              <th>Space Complexity</th>
+              <th></th>
+            </tr>
+            <tr>
+              <th><h2>Best</h2></th>
+              <th>O(n)</th>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="code">
+        <h1>Code Snippet</h1>
+        <div class="code_part">
+          <pre>
+            quickSort(arr[], low, high) {
+
+              if (low < high) {
+          
+                  /* pi is partitioning index, arr[pi] is now at right place */
+          
+                  pi = partition(arr, low, high);
+          
+                  quickSort(arr, low, pi - 1);  // Before pi
+          
+                  quickSort(arr, pi + 1, high); // After pi
+          
+              }
+          }
+          /* This function takes last element as pivot, places the pivot element at its
+           correct position in sorted array, and places all smaller (smaller than pivot)
+           to left of pivot and all greater elements to right of pivot */
+          partition (arr[], low, high)
+          {
+            // pivot (Element to be placed at right position)
+            pivot = arr[high];  
+  
+            i = (low – 1)  
+            // Index of smaller element and indicates the 
+            // right position of pivot found so far
+  
+            for (j = low; j <= high- 1; j++)
+            {
+              // If current element is smaller than the pivot
+              if (arr[j] < pivot)
+                {
+                  i++;    // increment index of smaller element
+                  swap arr[i] and arr[j]
+                }
+            }
+            swap arr[i + 1] and arr[high])
+            return (i + 1)
+          }
+          </pre>
+        </div>
+      </div>
+    </section>
+    <div class="footer">
+      <h1>About Us</h1>
+      <br />
+      <ul>
+        <li>
+          <a href="#"><i class="fa-regular fa-address-book"></i></a>
+        </li>
+        <li>
+          <a href="#"><i class="fa-brands fa-github"></i></a>
+        </li>
+        <li>
+          <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        </li>
+        <li>
+          <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+        </li>
+      </ul>
+    </div>
+    <script
+      src="https://kit.fontawesome.com/b38078abfc.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="../main.js"></script>
+    <script src="quicksort.js"></script>
+  </body>
+</html>
